@@ -1,31 +1,32 @@
-const int ledPins[] = {2,3,4}; // Built in LED in Arduino board
+const int ledPins[] = {2,3,4}; // Poorten lichtjes
 String msg,cmd;
 
 void setup() {
   
-  //pins led 
+  //Setup code voor lichtjes
   for(int led : ledPins){
     pinMode(led, OUTPUT);
    }
 
+  //Eerst uitzetten de lichtjes
   for(int led : ledPins){
     digitalWrite(led, LOW);
   }
   
-  Serial.begin(9600); // Communication rate of the Bluetooth Module
+  Serial.begin(9600); // Communicatie met bluetooth module
   msg = "";
 }
 
 void loop() {
   
   
-  // To read message received from other Bluetooth Device
-  if (Serial.available() > 0){ // Check if there is data coming
-    msg = Serial.readString(); // Read the message as String
+  // Lezen van bericht van app
+  if (Serial.available() > 0){ // Checken of er data binnenkomt
+    msg = Serial.readString(); // Lezen van bericht
     Serial.println("Android Command: " + msg);
   }
 
-  // Control LED in Arduino board
+  // Als bericht is turn on dan stoplicht uitvoeren
   if (msg == "<turn on>"){
     digitalWrite(ledPins[0], HIGH);
     delay(12000);
@@ -40,10 +41,10 @@ void loop() {
     digitalWrite(ledPins[2], HIGH);
     delay(12000);
     digitalWrite(ledPins[2], LOW);
-   
-    Serial.println("LED is turned on\n"); // Then send status message to Android
-    msg = ""; // reset command
+  
+    msg = ""; // reset bericht
   } else {
+    //als het bericht turn off is laat de oranje lamp knipperen
     if (msg == "<turn off>"){
         while(msg == "<turn off>"){
           digitalWrite(ledPins[1], HIGH);
@@ -52,11 +53,7 @@ void loop() {
           delay(1000);
           msg = Serial.readString();
           }
-          
-          
-       
-      
-      Serial.println("LED is turned off\n"); // Then send status message to Android
+         
       msg = ""; // reset command
     }
   }
