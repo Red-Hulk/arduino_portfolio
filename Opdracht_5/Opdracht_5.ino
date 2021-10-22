@@ -1,11 +1,11 @@
-//Ports of the led
+//Poorten van de leds
 const int ledRed = 11;
 const int ledGreen = 6;
 const int ledYellow = 3;
 
 void setup()
 {
-  //Setup code for the led
+  //Setup code voor de leds
   pinMode(ledRed, OUTPUT);
   pinMode(ledGreen, OUTPUT);
   pinMode(ledYellow, OUTPUT);
@@ -13,7 +13,7 @@ void setup()
 
 void loop()
 {
-  //Loop up from 0 to 255 for changing the RGB values
+  //Loop door 1 t/m 255 om de waarden te veranderen van de RGB
   for(int x=0; x<255; x++){
     analogWrite(ledRed, x);
     delay(1000);
@@ -22,7 +22,7 @@ void loop()
     analogWrite(ledYellow, x);
     delay(1000);
   }
-  //Loop down from 255 to 0 for changing the RGB values
+  //Loop terug door 1 t/m 255 om de waarden te veranderen van de RGB
   for(int x=255; x>0; x--){
     analogWrite(ledRed, x);
     delay(1000);
