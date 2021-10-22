@@ -1,4 +1,4 @@
-// These are the ports where the pins are connected to
+// Dit zijn de poorten waar de leds inzitten
 const int ledPinOne = 1;
 const int ledPinTwo = 2;
 const int ledPinThree = 3;
@@ -10,7 +10,7 @@ const int ledPinEight = 8;
 
 void setup() {
   
-  //Setup code for the pins
+  //Setup code voor de pins
   pinMode(ledPinOne, OUTPUT);
   pinMode(ledPinTwo, OUTPUT);
   pinMode(ledPinThree, OUTPUT);
@@ -22,19 +22,19 @@ void setup() {
 }
 
 void blink(int pin){
-  //Led goes on
+  //Lichtje gaat aan
   digitalWrite(pin, HIGH);
-  //Short delay between on and off
+  //Kort vertraging
   delay(100);
-  //Led goes out
+  //Lichtje gaat uit
   digitalWrite(pin, LOW);
-  //Short delay between on and off
+  //Korte vertraging
   delay(100);
 }
 
 void loop() {
   
-  //Method to let the led blink
+  //Methode om de lichtjes te laten blinken
   blink(ledPinOne);
   blink(ledPinTwo);
   blink(ledPinThree);
