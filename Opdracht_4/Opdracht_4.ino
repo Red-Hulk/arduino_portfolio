@@ -1,23 +1,23 @@
-//Port temp
+//Poort temperatuursensor
 const int tempPin = A0;
 
 
 void setup()
 {
-  //Tells monitor to be ready
+  //Monitor opzetten
   Serial.begin(9600);
 }
 
 void loop()
 { 
-  //Read the analog pin
+  //Lees de analoge pin
   int temp = analogRead(tempPin);   
-  //Convert output to celsius
+  //Omzetten naar celsuis
   temp = temp * 0.48828125;
-  //Print to the console
+  //Printen naar de console
   Serial.print("Temperatuur in graden Celsius: ");
-  //Print to the console with line break
+  //Print temperatuur
   Serial.println(temp);
-  //Delay for printing
+  //Korte vertraging
   delay(1000);  
 }
