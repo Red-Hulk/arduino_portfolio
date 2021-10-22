@@ -1,38 +1,38 @@
-#include <Servo.h> //Library to use the Servo
+#include <Servo.h> //Biblioteek importeren servo
 
 Servo myServo;  //Servo object
-const int trigPin = 12; //Trigpin connected to port 12
-const int echoPin = 8;  //Echopin connected to port 8
-float distance;  //variable to measure distance
-float duration;  //variable for duration of sound wave travel
+const int trigPin = 12; //Trigpin verbinden met poort 12
+const int echoPin = 8;  //Echopin verbinden met poort 8
+float distance;  //variable om afstand in op te slaan
+float duration;  //variable voor duur van geluidsgolf
 
 
 void setup(){
-  myServo.attach(2);  //Connect servo to port 2
-  pinMode(trigPin, OUTPUT); //Trigpin as output
-  pinMode(echoPin, INPUT);  //Echopin as input
+  myServo.attach(2);  //Verbind servo met pin 2
+  pinMode(trigPin, OUTPUT); //Trigpin als output
+  pinMode(echoPin, INPUT);  //Echopin als input
 }
 
 void loop(){
   ultraSound();
  
-  myServo.write(0); //Start servo at position 0
+  myServo.write(0); //Start servo met positie 0
  
-  if(distance <= 10){ //Distance smaller or equal move servo to position 90
-    myServo.write(90);
+  if(distance <= 10){ //Afstand kleiner of gelijk aan 10
+    myServo.write(90);// beweeg servo
   }
-  if(distance <= 4){ //Distance smaller or equal move servo to position 180
-    myServo.write(180);
+  if(distance <= 4){ //Afstand kleiner of gelijk aan 4
+    myServo.write(180);// beweeg servo
   }
 }
 
 void ultraSound(){
-  digitalWrite(trigPin, LOW); //Clear trigPin condition
-  delayMicroseconds(2);  //delay
-  digitalWrite(trigPin, HIGH); //Set trigpin active for 10 microseconds
+  digitalWrite(trigPin, LOW); //Leegmaken trigPin conditie
+  delayMicroseconds(2);  //vertraging
+  digitalWrite(trigPin, HIGH); //Zet trigpin actief voor 10 microseconden
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
-  duration = pulseIn(echoPin, HIGH); //Reads the echoPin, return the sound wave travel time
-  distance = duration / 58; //calculate the distance of sound through the speed of sound
+  duration = pulseIn(echoPin, HIGH); //Lees de echoPin, terugsturen geluidsgolf
+  distance = duration / 58; //berekenen van afstand
   
 }
