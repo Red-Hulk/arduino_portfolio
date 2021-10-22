@@ -1,95 +1,96 @@
-#include <Servo.h> //Include library for servo
+#include <Servo.h> //Bibliotheek toevoegen van servo
 
 Servo myServo; //Servo object
-int position;  //Variable for position servo
+int position;  //Variable voor positie servo
 
-const int buttonOne = 12; //Pin of button one
-const int buttonTwo = 3;  //Pin of button two
-int posButtonOne; //State of button one
-int posButtonTwo; //State of button two
-int posBothButtons;
+const int buttonOne = 12; //Pin van knop 1
+const int buttonTwo = 3;  //Pin van knop 2
+int posButtonOne; //Staat van knop 1
+int posButtonTwo; //Staat van knop 2
+int posBothButtons; //Staat van beide knoppen bij elkaar
 
 void setup(){
-  myServo.attach(6); //Connect servo with pin 6
-  pinMode(buttonOne, INPUT_PULLUP); //Setup for button one
-  pinMode(buttonTwo, INPUT_PULLUP); //Setup for button two
-  myServo.write(0); //Read the initial position for servo
+  myServo.attach(6); //Verbindt servo met pin 6
+  pinMode(buttonOne, INPUT_PULLUP); //Klaarzetten knop 1
+  pinMode(buttonTwo, INPUT_PULLUP); //Klaarzetten knop 2
+  myServo.write(0); //Lezen van begin positie servo
 }
 
 void loop(){
-  position = myServo.read(); //Read the current position of the servo
+  position = myServo.read(); //Lees de huidige stand servo
   
-  servoFunction(); //Function to move the servo's position
+  servoFunction(); //Functie om de servo te laten bewegen 
   
 }
 
 void servoFunction(){
   
-  //Check if the buttonOne is pressed and hold & if the position is lower of equal to 120 degrees
+  //Nakijken of knop 1 is ingedrukt en of de positie servo kleiner is dan 120 graden
   if(digitalRead(buttonOne) == LOW && position <= 120){
-    //Increment position by one
+    //Verhoog met 1
     posButtonOne = position + 1;
-    //The servo moves according the value posButtonOne
+    //De servo laten bewegen aan de hand van de posButtonOne
     myServo.write(posButtonOne);
-    //Delay in total of 1 sec (1000:120)
+    //Kleine vertraging
     delay(8);
     
-    //If the position value is 120 stop incrementing
-    //and move servo automatically back to position 0
+    //Als de positie 120 is stop met verhogen
+    //De servo gaat automatisch naar positie 0
     if(position == 120){
       for(position = 120; position >= 0; position--){
-            //Move servo
+            //Beweeg Servo
           myServo.write(position);
-            //Delay with 1 sec
+            //Vertraag met 1 sec
           delay(8);
       }
     }
   }
   
-  //Check if the buttonTwo is pressed and hold & if the position is lower of equal to 120 degrees
+  //Nakijken of knop 2 is ingedrukt en of de positie servo kleiner is dan 120 graden
   if(digitalRead(buttonTwo) == LOW && position <= 120){
     
-    //Increment position by one
+    //Verhoog met 1
     posButtonTwo = position + 1;
-    //The servo moves according the value posButtonTwo
+    //De servo laten bewegen aan de hand van de posButtonTwo
     myServo.write(posButtonTwo);
-    //Delay in total of 0.5 sec (500:120)
+    //Vertraging halve seconde
     delay(4);
     
-    //If the position value is 120 stop incrementing
-    //and move servo automatically back to position 0
+    //Als de positie 120 is stop met verhogen
+    //De servo gaat automatisch naar positie 0
     if(position == 120){
       for(position = 120; position >= 0; position--){
-        //Move servo
+        //Beweeg servo
         myServo.write(position);
-        //Delay in total of 0.5 sec
+        //Vertraag 0.5 seconde
         delay(4);
       }
     }
     
   }
  
-  //If both buttons are pressed and hold & if the position is lower of equal to 120 degrees
+
+  //Als de beide knoppen zijn ingedrukt en positie lager of gelijk is aan 120 graden
   if(digitalRead(buttonOne) == LOW && digitalRead(buttonTwo) == LOW
     && position <= 120){
     
-    //Increment position by one
+    //Verhogen met 1
     posBothButtons = position + 1;
     
     //The servo moves according the value posButtonOne
     myServo.write(posBothButtons);
-    //Delay in total of 1 sec (1000:120)
+    //Vertaging
     delay(8);
     
-    //If the position value is 120 stop incrementing
-    //and move servo automatically back to position 0
+    //Als de positie 120 is stop met verhogen
+    //De servo gaat automatisch naar positie 0
     if(position == 120){
-      //First delay 2sec, servo fixed position
+      //Eerste vertraging 2 seconde servo staat vast
       delay(2000);
       for(position = 120; position >= 0; position--){
-        //Move servo
+        //Beweeg servo
         myServo.write(position);
-        //Delay in total of 1 sec
+        //Vertraging
         delay(8);
       }
     
