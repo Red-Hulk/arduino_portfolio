@@ -1,4 +1,4 @@
-//Ports led and potentiometer initial value
+//Poorten lichtjes en potmeter en begin potmeter waarde 0
 const int potPin = A5;
 const int ledPin1 = 7;
 const int ledPin2 = 8;
@@ -12,7 +12,7 @@ int potmeterWaarde = 0;
 
 
 void setup() {
-  //Setup the leds
+  //Setup de lichtjes
   pinMode(ledPin1, OUTPUT);
   pinMode(ledPin2, OUTPUT);
   pinMode(ledPin3, OUTPUT);
@@ -25,11 +25,11 @@ void setup() {
 
 void loop() {
 
-  //Reading the potentiometer
+  //Lezen van waarde potmeter
   potmeterWaarde = analogRead(potPin);
   
-  //Checks values of potentiometer 
-  //to decide led on or off
+  //Waardes checken van potmeter 
+  //Bepaal licht aan of uit
   if(potmeterWaarde > 146){
     digitalWrite(ledPin1, HIGH);
   }
