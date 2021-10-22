@@ -1,25 +1,25 @@
-//Ports of button, led and initial value(s)
+//Poorten van de knop, lichtje, de begin waarde van de button & variable count om te kunnen bepalen of het lichtje aan of uit moet
 const int Button = 1;
 const int LED = 11;
 int ButtonState = 0;
 int Count = 0;
 
 void setup() {
-  //Set up code for button and led
+  //Set up code voor de knop en lichtje
   pinMode(Button, INPUT);
   pinMode(LED, OUTPUT);
 }
 
 void loop() {
-  //Reading the button
+  //Staat knopje 
   ButtonState = digitalRead(Button);
   
-  //If pushed on button increase count with one
+  //Als knopje wordt ingedrukt dan variable met eentje verhogen
   if(ButtonState == HIGH){
     Count++;
     delay(300);
   }
-  //Decide if button should be on or off
+  //Bepaal of knop aan of uit moet
   if(Count % 2 == 0){
     digitalWrite(LED, LOW);
   }else{
