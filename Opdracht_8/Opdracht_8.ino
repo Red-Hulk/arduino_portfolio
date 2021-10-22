@@ -43,7 +43,7 @@ void buttonPressed(){
     Serial.println(results.value, HEX);
     irrecv.resume();
       switch(results.value){
-        //Button one
+        //Button 1
         case 0xFD08F7:
           if(bijhouden == 0){
             bijhouden = 1;
@@ -58,7 +58,7 @@ void buttonPressed(){
           
           break;
           
-        //Button two
+        //Knop 2
         case 0xFD8877:
           if(bijhouden == 0){
             bijhouden = 1;
@@ -73,7 +73,7 @@ void buttonPressed(){
     
           break;
           
-        //Button three
+        //Knop 3
         case 0xFD48B7:
           if(bijhouden == 0){
             bijhouden = 1;
@@ -88,7 +88,7 @@ void buttonPressed(){
     
           break;
           
-        //Button four
+        //Knop 4
         case 0xFD28D7:
           if(bijhouden == 0){
             bijhouden = 1;
